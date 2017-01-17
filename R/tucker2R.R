@@ -1,243 +1,198 @@
-tucker2R <- function(datos,amb=2,stand=TRUE,nc1=2,nc2=2,niter=1000){
+#' Three-Mode Principal Components: Tucker 2 Model
+#'
+#' @description This function performs Three-Mode Principal Components  using
+#' Tucker-2 Model.Compute all the output necessary to plot  interactive
+#' Biplot.The Three-Mode Principal Component Analysis, provides both useful
+#' analytic and graphic tools to study and characterize phytogenetic resources,
+#' especially when the influence of environmental factors are possible.
+#'
+#' @usage tucker2R(datos, amb= 2, stand = TRUE, nc1 = 2, nc2 = 2, niter = 10000)
+#'
+#' @param datos a data frame with n rows for individuals and p variable for
+#' columns. All the conditions must be the same variables names and
+#' individuals.
+#'
+#' @param  amb The diferent conditions, in which the same variables and
+#' individuals had been studied. By default is 2.
+#' @param  stand a boolean value, if it is TRUE (value set by default) each
+#' variabel is centered and scale by variable.
+#' @param nc1 number of components in the first mode, by default is 2
+#' @param nc2 number of components in the second mode, by default is 2
+#' @param niter the iteration number for the Tuckals algorithm, by default
+#' 10000 iteration
+#'
+#' @details To determine the number of components that are going to be retained,
+#'  we use previously to the algorithm applications,method called DifFit. The
+#'  number of components in the third mode is obtained from the number of
+#'  conditions.The labels of the variables must be the same for all conditions
+#'  in the data frame.
+#'
+#' @return \code{Resultado}a list which stores the name of the individual and
+#' the variables,the number of iterations, the variability explained by the
+#' model, and the total variability.
+#' \code{Proyeccion}It is a list which holds the projection of individuals and
+#' variables to see if the biplot is difficult to understand because of  the
+#' huge number of cases or plotted vectors.
+#' \code{saltuck} is a list with the results of the algorithm to plot the biplot,
+#'  where the names of the conditions are well kept.
+#'
+#' @references
+#' \describe{
+#'  \item{MARTICORENA, M.; BRAMARDI, S.; DEFACIO, R. 2010.}{Characterization of maize populations in different environmental
+#' conditions by means of Three-Mode Principal Components Analysis. Revista Ciencia e Investigacion   Agraria. 37(3): 93-105.}
+#'  \item{Timmerman, M.E., and H. Kiers. 2000.}{Three-mode principal components analysis. Choosing numbers of components and sensitivity to local
+#' optima. The British Journal of the Mahematical and Statistical Psychology 53: 1-16.}
+#' }
+#'
+#' @author Marta Marticorena, Gustavo Gimenez, Cecilia Gonzalez, Sergio Bramardi
+#'
+#' @seealso The function plot.marta for a complete analisis.
+#'
+#' @examples
+#' data(maize_pop)
+#' (output <- tucker2R(maize_pop,amb=2,stand=TRUE,nc1=3,nc2=3))
+#'
+#' @keywords kwd1
+#'
+#' @export
 
-   {nc3 <- amb}
-     ##La condición para que el marco de datos sea únicamente un marco de datos
-    if(!is.data.frame(datos)){stop("datos must be a data frame")}
-    ##Condición para que tenga el mismo número de variables en los ambientes
-    if(ncol(datos)%%amb!=0){stop("The variables must be the same in amb")}
-    ##Condición para agregar un dato, en caso que sea un dato faltante.
-    if (any(is.na(datos))){stop("There is at least one NA  'datos' must be complete")}
-    ##Recomendación para utilizar el tucker 3 en lugar del tucker 2
-    if(amb>4){print("when amb > 4 The Tucker 3 is recommended!")}
-    ##Condición para tener las mismas variables en todos los ambientes
-    colnume <- ncol(datos)
-    colnamb <- colnume/amb
-    ambi <- amb-1
-    for (j in 1:ambi){
-        t <- -1+j
-        t1 <- t*colnamb
-        for (i in 1:colnamb){
-            a <- i+t1
-            b <- colnamb +i + t1
-            fff <- colnames(datos)[a] == colnames(datos)[b]
-            if (fff==FALSE){stop("datos must be the same variables")}
-        }
+tucker2R <- function(datos,amb=2,stand=TRUE,nc1=2,nc2=2,niter=10000){
+  niter <- niter
+  nc3 <- amb
+
+  if(!is.data.frame(datos)){stop("datos must be a data frame")}
+
+  if(ncol(datos)%%amb!=0){stop("The variables must be the same in amb")}
+
+  if (any(is.na(datos))){stop("There is at least one NA  'datos' must be complete")}
+
+  if(amb>4){print("when amb > 4 The Tucker 3 is recommended!")}
+
+  colnume <- ncol(datos)
+  colnamb <- colnume/amb
+  ambi <- amb-1
+  for (j in 1:ambi){
+    t <- -1+j
+    t1 <- t*colnamb
+    for (i in 1:colnamb){
+      a <- i+t1
+      b <- colnamb +i + t1
+      fff <- colnames(datos)[a] == colnames(datos)[b]
+      if (fff==FALSE){stop("datos must be the same variables")}
     }
+  }
 
-    ##Argumento de estandarización
-    if (stand == TRUE){datos.stan <- scale(datos)
-                       center <- attributes(datos.stan)$`scaled:center`
-                       Escala <- attributes(datos.stan)$`scaled:scale`
-                       datos <- as.data.frame(datos.stan)
-                   }else{
-                       datos <- datos
-                   }
-      ##Condición para que se cumpla el criterio de Diffit
-    if(!(nc1<=nc2*nc3 && nc3<=nc1*nc2 && nc2 <= nc1*nc3)){stop("in the combination of components for a solution must use a Diffit criteria")}
-#######Define las categorías de cada modo
-    I<-dim(datos)[1]   #número de categorías del primer modo
-    J <-dim(datos)[2]   #número de categorías del segundo modo
-    J <- J/amb 
-    K<-amb   #número de categorías del tercer modo,general
-    col <- J
-#######Define el número de componentes de cada modo por default
-    n1<-nc1   #número de componentes del primer modo
-    n2<-nc2 #número de componentes del segundo modo
-    n3<-nc3   #número de componentes del tercer modo
+  if (stand == TRUE){datos.stan <- scale(datos)
+  center <- attributes(datos.stan)$`scaled:center`
+  Escala <- attributes(datos.stan)$`scaled:scale`
+  datos <- as.data.frame(datos.stan)
+  }else{
+    datos <- datos
+  }
 
-#######Etiquetas de los ambientes    
-    etiq_var <- colnames(datos)[1:J]
-    etiq_varXamb <- rep(etiq_var,K)
-    eti <- rep("amb",K)
-    neti <- seq(1:K)
-    etiq_amb <- paste(eti,neti,sep=".")
-    etiq_ambXJ <- rep(etiq_amb,each=J)
-    etiq <- paste(etiq_var,etiq_ambXJ,sep="-")
-    etiq_ind <- rownames(datos)
+  if(!(nc1<=nc2*nc3 && nc3<=nc1*nc2 && nc2 <= nc1*nc3)){stop("in the combination of components for a solution must use a Diffit criteria")}
 
-    m <- array(0, dim=c(I,J,K))
-    for (k in 1:K){
-        n <- k-1
-        l <- n*col
-        for (i in 1:I)  
-            {
-                for(j in 1:J)
-                    {
-                        m[i,j,k]<-m[i,j,k]+datos[i,j+l];
-                    }
-            }
-    }
+  I <-dim(datos)[1]
+  J <-dim(datos)[2]
+  J <- J/amb
+  K<-amb
+  col <- J
 
-    rownames(m) <- etiq_ind
-    colnames(m) <- etiq_var
-    dimnames(m)[3] <-list(etiq_amb)
-
-                                        #Concatenación de matrices: Obtenemos X1, X2 y X3
-    ##Concatena por individuo X1
-    X1 <- array(0, dim=c(I,J*K))
-    for (ii in 1:I)
-        {
-            c<-1; 
-            for (kk in 1:K)
-                {
-                    for (jj in 1:J)
-                        {
-                            X1[ii,c]<-X1[ii,c]+m[ii,jj,kk];
-                            c<-c+1
-                        }
-                }
-        }
-
-                                        #Concatena por variable
-    X2 <- array(0, dim=c(J,I*K))
-    for (jj in 1:J)
-        {
-            c<-1;  
-            for (ii in 1:I)
-                {
-                    for (kk in 1:K)
-                        {
-                            X2[jj,c]<-X2[jj,c]+m[ii,jj,kk];
-                            c<-c+1
-                        }
-                }
-        }
-
-                                        #Concatena por Ambiente
-    X3 <- array(0, dim=c(K,I*J))
-    for (kk in 1:K)
-        {
-            c<-1; 
-            for (jj in 1:J)
-                {
-                    for (ii in 1:I)
-                        {
-                            X3[kk,c]<-X3[kk,c]+m[ii,jj,kk];
-                            c<-c+1
-                        }
-                }
-        }
+  n1<-nc1
+  n2<-nc2
+  n3<-nc3
 
 
-                                        #cálculo de las matrices  a y b 
-    W1=0 
-    x=X1%*%t(X1)
+  etiq_var <- colnames(datos)[1:J]
+  etiq_varXamb <- rep(etiq_var,K)
+  eti <- rep("amb",K)
+  neti <- seq(1:K)
+  etiq_amb <- paste(eti,neti,sep=".")
+  etiq_ambXJ <- rep(etiq_amb,each=J)
+  etiq <- paste(etiq_var,etiq_ambXJ,sep="-")
+  etiq_ind <- rownames(datos)
 
-                                        #inercia total
-                                        #calculo la traza de x
-    p<-0
-    for (u in 1:I)
-        {
-            p<-p+x[u,u]
-        }
-    y=X2%*%t(X2);
-    z=X3%*%t(X3);
-    tam1 =nrow(X1);
-    tam2 =ncol(X1);
-    j1=1;
 
-                                        #descomposición  en valores singulares de la matriz x
-    a=svd(x)$u
-    d1=svd(x)$d
-    v=svd(x)$v
+  matricex <- matrition(datos,I,J,K)
+  m <- matricex$m
+  X1 <- matricex$X1
+  X2 <- matricex$X2
+  X3 <- matricex$X3
 
-                                        #descomposición en valores singulares de la matriz y
-    b=svd(y)$u
-    d2=svd(y)$d
-    v=svd(y)$v
+  rownames(m) <- etiq_ind
+  colnames(m) <- etiq_var
+  dimnames(m)[3] <-list(etiq_amb)
 
-    a=a[,1:n1]
-    b=b[,1:n2] 
-    c=diag(n3) 
 
-    iter <-  0 #iter contador de iteraciones
-    while (abs(j1)>=0.05){
-        k1=kronecker(c,b) 
-        G1=t(a)%*%X1%*%k1 
-        r1=kronecker(t(c),t(b))
-        S1=a%*%G1%*%r1
-        t1=(X1-S1)%*%t(X1-S1)
-        l1=sum(diag(t1))
-        m=l1
-        j1=l1-W1
-        k1=kronecker(c,b)
-        x=X1%*%k1
-        x=x%*%t(x) 
-        a1=svd(x)$u
-        d2=svd(x)$d
-        v2= svd(x)$v
-        a=a1[ ,1:n1]
-        k1=kronecker(c,b)
-        G1=t(a)%*%X1%*%k1
-        r1=kronecker(t(c),t(b))
-        S1=a%*%G1%*%r1
-        t1=(X1-S1)%*%t(X1-S1)
-        l2=sum(diag(t1))
-        m=l2
-        j1=l2-l1
-        k2=kronecker(c,a)
-        y=X2%*%k2
-        y=y%*%t(y)
-        b1=svd(y)$u
-        d3=svd(y)$d
-        v3= svd(y)$v
-        b=b1[ ,1:n2]
-        k1=kronecker(c,b)
-        G1=t(a)%*%X1%*%k1
-        r1=kronecker(t(c),t(b))
-        S1=a%*%G1%*%r1
-        t1=(X1-S1)%*%t(X1-S1)
-        l3=sum(diag(t1))
-        m=l3
-        j1=l3-l2
-        iter=iter + 1
-        if (iter >= niter) print("Warnings: not converg")
-        if (iter >= niter) break
-        W1=l3}
-    A=a
-    B=b
-    C=c
+  W1 <- 0
+  x <- X1%*%t(X1)
+  y <- X2%*%t(X2)
+  z <- X3%*%t(X3)
 
-                                        #BIPLOT
-                                        # Obtención de los marcadores para el Biplot Interactivo: Djk
-    K=kronecker(C,B);
-    D=G1%*%t(K);
-    D=t(D);
-                                        # disp(D)
+  p <- 0
+  for (u in 1:I)
+  {
+    p<-p+x[u,u]
+  }
 
-                                        #  suma de cuadrados explicada, en porcentaje.
-    SCE=(p-m)/p * 100
+  tam1  <- nrow(X1)
+  tam2  <- ncol(X1)
 
-                                        #Reescalamiento óptimo
-    sca=0; 
-    scb=0;
-    sca=sum(sum(A^2));
-    scb=sum(sum(D^2));
-    sca=sca/tam1;
-    scb=scb/tam2;
-    scf=sqrt(sqrt(scb/sca));
-    IND=a*scf
-    IND
-    INDi <- IND[,1:2]
-    colnames(INDi) <- c("Dim-1","Dim-2")
-    D=D/scf
-    rownames(D) <- etiq
-    rownames(IND) <- etiq_ind
-    Dvar <- D[,1:2]
-    colnames(Dvar) <- c("Dim-1","Dim-2")
 
-    if (stand == TRUE){
-        Resultado <- list(Scales=Escala,MEANS=center,individuos=etiq_ind,variables=etiq,
-                          iteraciones=iter,SCExplicada=SCE,vartot=p)
-    }
-    if (stand == FALSE){
-        Resultado <- list(individuos=etiq_ind,variables=etiq,
-                          iteraciones=iter,SCExplicada=SCE,vartot=p)
-    }
+  descompx <- svd(x)
+  a  <- descompx$u
+  d1 <- descompx$d
+  v  <- descompx$v
 
-    Proyeccion <- list(variables=Dvar,Individuos=INDi)
-    saltuck <- list(IND=IND,D=D,Ambientes=etiq_amb,
-                    Resultados=Resultado,Proyecciones=Proyeccion)
-    class(saltuck) <- "marta"
-    return(saltuck)
+  descompy <- svd(y)
+  b  <- descompy$u
+  d2 <- descompy$d
+  v  <- descompy$v
+
+  corrida_tuckal <- tuckal(a,b,d2,n1,n2,n3,X1,X2,p,niter)
+  iter <- corrida_tuckal$iter
+  if (iter >= niter) print("Warnings: not converg")
+
+  a <- corrida_tuckal$a
+  A <- corrida_tuckal$A
+  B <- corrida_tuckal$B
+  C <- corrida_tuckal$C
+
+
+  SCE  <- corrida_tuckal$SCE
+
+  G1 <- corrida_tuckal$G1
+  K <- kronecker(C,B)
+  D <- G1%*%t(K)
+  D <- t(D)
+
+  sca  <- 0
+  scb  <- 0
+  sca  <- sum(sum(A^2))
+  scb  <- sum(sum(D^2))
+  sca  <- sca/tam1
+  scb  <- scb/tam2
+  scf  <- sqrt(sqrt(scb/sca));
+  IND  <- a*scf
+  INDi <- IND[,1:2]
+  colnames(INDi) <- c("Dim-1","Dim-2")
+  D <- D/scf
+  rownames(D)    <- etiq
+  rownames(IND)  <- etiq_ind
+  Dvar           <- D[,1:2]
+  colnames(Dvar) <- c("Dim-1","Dim-2")
+
+  if (stand == TRUE){
+    Resultado <- list(Scales=Escala,MEANS=center,individuos=etiq_ind,variables=etiq,
+                      iteraciones=iter,SCExplicada=SCE,vartot=p)
+  } else {
+    Resultado <- list(individuos=etiq_ind,variables=etiq,
+                      iteraciones=iter,SCExplicada=SCE,vartot=p)
+  }
+
+  Proyeccion <- list(variables=Dvar,Individuos=INDi)
+  saltuck <- list(IND=IND,D=D,Ambientes=etiq_amb,
+                  Resultados=Resultado,Proyecciones=Proyeccion,matrizG=G1)#modificado
+  class(saltuck) <- "marta"
+  return(saltuck)
 }

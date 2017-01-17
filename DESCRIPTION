@@ -1,9 +1,20 @@
 Package: tuckerR.mmgg
 Type: Package
 Title: Three-Mode Principal Components Analysis
-Version: 1.0
-Date: 2014-10-27
-Author: Marta Marticorena, Gustavo Gimenez, Cecilia Gonzalez, Sergio Bramardi
+Version: 1.5.0
+Authors@R: c(
+      person("Marta","Marticorena",role = "aut"),
+      person("Gustavo","Gimenez",email = "gustavo.gimenez@faea.uncoma.edu.ar",role="cre"),
+      person("Cecilia","Gonzalez",role = "ctb"),
+      person("Sergio","Bramardi",role = "aut"))
 Maintainer: Gustavo Gimenez <gustavo.gimenez@faea.uncoma.edu.ar>
-Description: This package performs Three-Mode Principal Components Analysis,which carries out Tucker Models
+Description: This package performs Three-Mode Principal Components Analysis,
+    which carries out Tucker Models.
+Depends:
+    R (>= 3.3.0)
+Suggests:
+    knitr,testthat
 License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 5.0.1
