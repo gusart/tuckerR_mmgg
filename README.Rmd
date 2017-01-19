@@ -1,0 +1,44 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+### tuckerR.mmgg
+
+This package performs Three-Mode Principal Components using Tuckers Models and plot interactive Biplot.Some experiment design generated three-way or three-mode data, repeated observations of a set of attributes for a set of individuals in different conditions. The information was displayed in a three-dimensional array, and the structure of the data was explored using Three-Mode Principal
+Component Analysis, the Tucker-2 Model. 
+
+### Installation
+
+```{r installation, eval = FALSE}
+devtools::install_github("gusart/tuckerR_mmgg")
+```
+  
+### Important contribution of this package
+The most important contribution of this package are the interactive biplot graphics and the application of the `diffit()`  function to find the best combination of components to retain.
+
+```{r}
+library(tuckerR.mmgg)
+data(maize_pop)
+output <- tucker2R(maize_pop,amb=2,stand=TRUE,nc1=3,nc2=3)
+```
+
+###Extract the core matrix.
+
+```{r}
+output$matrizG  
+```
+
+###The plot from output of function
+
+```{r}
+plot(output) 
+```
