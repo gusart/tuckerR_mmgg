@@ -8,7 +8,8 @@
  different conditions corresponding to production areas of Buenos Aires.
  Since the variables are repeated in both places the data frame has a total
  of 20 variables, 10 for an environment and evaluated them in the other
- conditions.
+ conditions. First and second conditions the numerical vectors are the
+ following:
 
  \describe{
  \item{\code{LMZ}}{a numeric vector with ear length(cm), in first condition}
@@ -26,26 +27,21 @@
  condition}
  \item{\code{ALTMZ}}{a numeric vector with height of ear insertion (cm) in
  first condition}
- \item{\code{LMZ}}{a numeric vector with a numeric vector with ear length(cm),
-  in second condition}
- \item{\code{DMZ}}{a numeric vector with a numeric vector with ear
- diameter(mm),in second condition}
- \item{\code{AGR}}{a numeric vector with a numeric vector with grain
- width(mm),in second condition}
- \item{\code{LGR}}{a numeric vector with a numeric vector with grain
- length(cm), in first condition }
- \item{\code{PROL}}{a numeric vector with a numeric vector
- prolicicacy(ears/plant), in  second condition}
- \item{\code{GRXM}}{a numeric vector with a numeric vector with grains by
- meter in second condition}
- \item{\code{PESO_1000}}{a numeric vector with a numeric vector with weight
-  of 1000 grains (grs),in second condition}
- \item{\code{REND}}{a numeric vector with a numeric vector with yield(kg/ha),
-  in second condition}
- \item{\code{ALTPL}}{a numeric vector with a numeric vector height of the
- plant (cm) in second condition}
- \item{\code{ALTMZ}}{a numeric vector with a numeric vector with height of
- ear insertion (cm) in second condition}
+ #'  \item{\code{LMZ}}{a numeric vector with ear length(cm), in second condition}
+ \item{\code{DMZ}}{a numeric vector with ear diameter (mm),in second
+ condition}
+ \item{\code{AGR}}{a numeric vector with grain width (mm),in second condition}
+ \item{\code{LGR}}{a numeric vector with grain length (cm), in second
+  condition }
+ \item{\code{PROL}}{a numeric vector prolicicacy (ears/plant), in second
+ condition}
+ \item{\code{GRXM}}{a numeric vector with grains by meter in second condition}
+ \item{\code{PESO_1000}}{a numeric vector with weight of 1000 grains (grs) in second condition}
+ \item{\code{REND}}{a numeric vector with yield (kg/ha), in second condition}
+ \item{\code{ALTPL}}{a numeric vector height of the plant (cm) in second
+ condition}
+ \item{\code{ALTMZ}}{a numeric vector with height of ear insertion (cm) in
+ second condition}
  }}
 \usage{
 data("maize_pop")
@@ -62,7 +58,7 @@ Ten quantitative variables were evaluated in two tests conducted
   influenced, to a certain extent, by environmental conditions.
 }
 \examples{
-data(maize_pop)
+data(maize_pop,package = "tuckerR.mmgg")
 str(maize_pop); summary(maize_pop)
 }
 \references{

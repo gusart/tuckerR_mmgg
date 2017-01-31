@@ -1,5 +1,5 @@
 #'@method print marta
-print.marta <- function(mostrar){
+print.marta <- function(mostrar, ...){
   cat("Means by variables","\n")
   print(as.matrix(mostrar$Resultado$MEANS))
   cat("Environment:",mostrar$Ambientes,"\n")

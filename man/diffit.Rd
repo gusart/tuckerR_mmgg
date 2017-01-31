@@ -24,21 +24,20 @@ percentage of variability explained and Diffit rate. The critic value or
 threhold is also return.
 }
 \description{
-The axis value to be retained in the first and second mode, P
-and Q, was determined using the Diffit. For the third mode, K equal number
-of environments. The Diffit method consist of fitting the Tuckals algorithm
-in each combinations of axis value. The combination of axis are selected by
-the Diffit criteria where \eqn{nc1<=nc2*nc3 && nc3<=nc1*nc2 && nc2 <= nc1*nc3}.
+The diffit method is used to apply when we need to know the
+axis number to be gathered in the P mode, and Q mode. The third mode, K
+it is related to the environment  numbers.
+The diffit method consist on fitting each value with the Tuckle algorithm.
 }
 \details{
-The best solution obtained is the one which combination obtained
-has a higher porcentage of variability explained and it has to exceed the
-threshold.
+The final result is the model which has the most coefficient diffits
+the greatest variability explained and the one which exceed the threshold.
 }
 \examples{
-data(maize_pop)
-dif_sal <- diffit(maize_pop,amb=2)
-print(dif_sal)
+#Copy and paste this example in your console without the comment
+#data(maize_pop,package = "tuckerR.mmgg")
+#dif_sal <- diffit(maize_pop,amb=2)
+#print(dif_sal) the best combination is 3 3 2
 
 }
 \author{

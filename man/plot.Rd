@@ -30,7 +30,7 @@ The interactive Biplot allows for the visualization of the
 inter structure of the differents data tables.
 }
 \examples{
-data(maize_pop)
+data(maize_pop,package = "tuckerR.mmgg")
 prueba1 <- tucker2R(maize_pop, amb=2, stand=TRUE, nc1=3, nc2=3)
 plot(prueba1)
 

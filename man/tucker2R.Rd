@@ -49,7 +49,7 @@ To determine the number of components that are going to be retained,
  in the data frame.
 }
 \examples{
-data(maize_pop)
+data(maize_pop,package = "tuckerR.mmgg")
 (output <- tucker2R(maize_pop,amb=2,stand=TRUE,nc1=3,nc2=3))
 
 }

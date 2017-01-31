@@ -7,9 +7,9 @@
 \title{Three-Mode Principal Components: Tuckers  Models}
 \description{
 This package performs Three-Mode Principal Components  using Tuckers  Models
-and  plot  interactive  Biplot. The Three-Mode Principal Component Analysis,
+and  plot  interactive  Biplot. These Three-Mode Principal Component Analysis,
 provides both useful analytic and graphic tools to study and characterize
-phytogenetic resources, especially when the influence of environmental
+phytogenetic resources, specially when the influence of environmental
 factors are possible.
 }
 \author{

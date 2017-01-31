@@ -17,7 +17,7 @@
 #' @details This process is also knowing as 'matricizing'  or 'unfolding'.
 #'
 #' @examples
-#' data(maize_pop)
+#' data(maize_pop,package = "tuckerR.mmgg")
 #' conc_matrix <- matrition(maize_pop,I=30,J=10,K=2)
 #' conc_matrix$m  #get m array
 #' conc_matrix$X1 #get matrix by cases
