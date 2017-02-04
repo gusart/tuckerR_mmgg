@@ -29,7 +29,7 @@
 #'  condition}
 #'  \item{\code{ALTMZ}}{a numeric vector with height of ear insertion (cm) in
 #'  first condition}
-#'  #'  \item{\code{LMZ}}{a numeric vector with ear length(cm), in second condition}
+#'  \item{\code{LMZ}}{a numeric vector with ear length(cm), in second condition}
 #'  \item{\code{DMZ}}{a numeric vector with ear diameter (mm),in second
 #'  condition}
 #'  \item{\code{AGR}}{a numeric vector with grain width (mm),in second condition}
