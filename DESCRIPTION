@@ -8,7 +8,7 @@ Authors@R: c(
       person("Cecilia","Gonzalez",role = "ctb"),
       person("Sergio","Bramardi",role = "aut"))
 Maintainer: Gustavo Gimenez <gustavo.gimenez@faea.uncoma.edu.ar>
-Description: This package performs Three-Mode Principal Components Analysis,
+Description: Performs Three-Mode Principal Components Analysis,
     which carries out Tucker Models.
 Depends:
     R (>= 3.3.0)
