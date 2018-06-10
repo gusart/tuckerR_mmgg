@@ -15,4 +15,3 @@ factors are possible.
 \author{
 Marta Marticorena, Gustavo Gimenez, Cecilia Gonzalez, Sergio Bramardi
 }
-

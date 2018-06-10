@@ -31,7 +31,7 @@
 #' prueba1 <- tucker2R(maize_pop, amb=2, stand=TRUE, nc1=3, nc2=3)
 #' plot(prueba1)
 #'
-#' @importFrom graphics par plot rect text points arrows
+#' @importFrom graphics par plot.default rect text points arrows
 #' @importFrom graphics abline legend title
 #' @rdname plot
 #' @export
@@ -57,7 +57,7 @@ plot.marta <- function(saltuck){
     ambsa <- saltuck$Ambientes
     ambs  <- length(ambsa)
 
-    plot(X[,1],
+    plot.default(X[,1],
          X[,2],
          ylim=c(min(X,Z),max(X,Z)),
          xlim=c(min(X,Z),max(X,Z)), type="n",

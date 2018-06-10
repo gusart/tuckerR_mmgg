@@ -37,4 +37,3 @@ conc_matrix$X1 #get matrix by cases
 conc_matrix$X2 #get matrix by variables
 conc_matrix$X3 #get matrix by environments
 }
-

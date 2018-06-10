@@ -53,9 +53,6 @@ data(maize_pop,package = "tuckerR.mmgg")
 (output <- tucker2R(maize_pop,amb=2,stand=TRUE,nc1=3,nc2=3))
 
 }
-\author{
-Marta Marticorena, Gustavo Gimenez, Cecilia Gonzalez, Sergio Bramardi
-}
 \references{
 \describe{
  \item{MARTICORENA, M.; BRAMARDI, S.; DEFACIO, R. 2010.}{Characterization of maize populations in different environmental
@@ -67,5 +64,7 @@ optima. The British Journal of the Mahematical and Statistical Psychology 53: 1-
 \seealso{
 The function plot.marta for a complete analisis.
 }
+\author{
+Marta Marticorena, Gustavo Gimenez, Cecilia Gonzalez, Sergio Bramardi
+}
 \keyword{kwd1}
-

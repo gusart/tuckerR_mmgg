@@ -3,6 +3,7 @@
 \name{plot}
 \alias{plot}
 \alias{plot.marta}
+\alias{plot.marta}
 \title{Plot an interactive Biplot}
 \usage{
 plot(saltuck, ...)
@@ -35,9 +36,6 @@ prueba1 <- tucker2R(maize_pop, amb=2, stand=TRUE, nc1=3, nc2=3)
 plot(prueba1)
 
 }
-\author{
-Marta Marticorena, Gustavo Gimenez, Cecilia Gonzalez, Sergio Bramardi
-}
 \references{
 \describe{
  \item{MARTICORENA, M.; BRAMARDI, S.; DEFACIO, R. 2010.}{Characterization of
@@ -48,4 +46,6 @@ Marta Marticorena, Gustavo Gimenez, Cecilia Gonzalez, Sergio Bramardi
  appications to principal components analysis. Biometrika. 58, 453-467.}
 }
 }
-
+\author{
+Marta Marticorena, Gustavo Gimenez, Cecilia Gonzalez, Sergio Bramardi
+}

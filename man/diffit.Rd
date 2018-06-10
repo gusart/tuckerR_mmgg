@@ -40,9 +40,6 @@ the greatest variability explained and the one which exceed the threshold.
 #print(dif_sal) the best combination is 3 3 2
 
 }
-\author{
-Marta Marticorena, Gustavo Gimenez, Cecilia Gonzalez, Sergio Bramardi
-}
 \references{
 \describe{
  \item{MARTICORENA, M.; BRAMARDI, S.; DEFACIO, R. 2010.}{Characterization of
@@ -54,4 +51,6 @@ Marta Marticorena, Gustavo Gimenez, Cecilia Gonzalez, Sergio Bramardi
   The British Journal of the Mahematical and Statistical Psychology 53: 1-16.}
 }
 }
-
+\author{
+Marta Marticorena, Gustavo Gimenez, Cecilia Gonzalez, Sergio Bramardi
+}
