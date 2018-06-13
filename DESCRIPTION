@@ -11,7 +11,7 @@ Maintainer: Gustavo Gimenez <gustavo.gimenez@faea.uncoma.edu.ar>
 Description: Performs Three-Mode Principal Components Analysis,
     which carries out Tucker Models.
 Depends:
-    R (>= 3.4.4)
+    R (>= 3.3.0)
 Suggests:
     knitr,testthat
 License: GPL-3

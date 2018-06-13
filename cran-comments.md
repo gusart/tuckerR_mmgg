@@ -1,6 +1,7 @@
 ## Test environments
 * Debian GNU/Linux stretch/, R 3.4.4
 * win-builder (devel and release)
+* Could not fetch README-unnamed-chunk-4-1.png and i dont know why there is no problems in mi check
 
 ## R CMD check results
 
