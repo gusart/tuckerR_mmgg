@@ -15,7 +15,7 @@
 #' @param  amb The diferent conditions, in which the same variables and
 #' individuals had been studied. By default is 2.
 #' @param  stand a boolean value, if it is TRUE (value set by default) each
-#' variabel is centered and scale by variable.
+#' variable is centered and scale by variable.
 #' @param nc1 number of components in the first mode, by default is 2
 #' @param nc2 number of components in the second mode, by default is 2
 #' @param niter the iteration number for the Tuckals algorithm, by default

@@ -15,7 +15,7 @@ individuals.}
 individuals had been studied. By default is 2.}
 
 \item{stand}{a boolean value, if it is TRUE (value set by default) each
-variabel is centered and scale by variable.}
+variable is centered and scale by variable.}
 
 \item{nc1}{number of components in the first mode, by default is 2}
 
