@@ -17,7 +17,7 @@
 #'
 #' @references
 #' \describe{
-#'  \item{MARTICORENA, M.; BRAMARDI, S.; DEFACIO, R. 2010.}{Characterization of
+#'  \item{Marticorena, M.; Bramardi, S.; Defacio, R. 2010.}{Characterization of
 #'   maize populations in different environmental conditions by means of Three
 #'   Mode Principal Components Analysis. Revista Ciencia e Investigacion
 #'   Agraria. 37(3): 93-105.}

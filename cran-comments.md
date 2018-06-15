@@ -1,7 +1,7 @@
 ## Test environments
 * Debian GNU/Linux stretch/, R 3.4.4
 * win-builder (devel and release)
-* Could not fetch README-unnamed-chunk-4-1.png and i dont know why there is no problems in mi check
+* Fix bugs with  README-unnamed-chunk-4-1.png and also the index in pdf version of help.
 
 ## R CMD check results
 
@@ -13,7 +13,7 @@
   
 ## Reverse dependencies
 
-This is a new release, so there are no reverse dependencies.
+The reverse dependencies was check succesfully
 
 ---
 

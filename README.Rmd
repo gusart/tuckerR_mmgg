@@ -25,22 +25,42 @@ You can install tuckerR.mmgg from github with:
 devtools::install_github("gusart/tuckerR_mmgg")
 ```
 
+
+Also you can install from CRAN as a packages
+```{pack_cran}
+install.packages("tuckerR.mmgg"")
+```
+
 ## Important contribution of this package
 
 The most important contribution of this package are the interactive biplot graphics and the application of the `diffit()` function to find the best combination of components to retain.
 
 ## Example
+The data are part of  collection of local populations corresponding to different races that are conserved in the Active Germplasm Bank of INTA Pergamino Experimental Station, Argentina.A data frame with 10 characteristics of 31 maize populations in two different conditions corresponding to production areas of Buenos Aires. Since the variables are repeated in both places the data frame has a total of 20 variables, 10 for an environment and evaluated them in the other conditions. 
+
+### Compute the number of components to retain using diffit methods
+The diffit method is used to apply when we need to know the axis number to be gathered in the P mode, and Q mode. The third mode, K it is related to the environment numbers. The diffit method consist on fitting each value with the Tuckle algorithm.
+
+
+```{r apply_diffit}
+library(tuckerR.mmgg)
+data(maize_pop,package = "tuckerR.mmgg")
+dif_sal <- diffit(maize_pop,amb=2)
+print(dif_sal)
+```
+In determining the number of components to be retained, the first row must be ignored, since it is the first value in the algorithm. In this case, the best combination is
+$3-3-2$.
+
 
 This is a basic example which shows you how to solve a common problem:
-
 ```{r example}
-library(tuckerR.mmgg)
 data(maize_pop)
 output <- tucker2R(maize_pop,amb=2,stand=TRUE,nc1=3,nc2=3)
 ```
 
-### Extract the core matrix.
 
+### Extract the core matrix.
+to obtain the core matrix, type:
 ```{r salida}
 output$matrizG  
 #>           [,1]     [,2]      [,3]      [,4]     [,5]       [,6]

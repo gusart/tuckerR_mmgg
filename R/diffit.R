@@ -23,7 +23,7 @@
 #'
 #' @references
 #' \describe{
-#'  \item{MARTICORENA, M.; BRAMARDI, S.; DEFACIO, R. 2010.}{Characterization of
+#'  \item{Marticorena, M.; Bramardi, S.; Defacio, R. 2010.}{Characterization of
 #'  maize populations in different environmental conditions by means of
 #'  Three-Mode Principal Components Analysis. Revista Ciencia e Investigacion
 #'  Agraria. 37(3): 93-105.}
@@ -38,7 +38,8 @@
 #' #Copy and paste this example in your console without the comment
 #' #data(maize_pop,package = "tuckerR.mmgg")
 #' #dif_sal <- diffit(maize_pop,amb=2)
-#' #print(dif_sal) the best combination is 3 3 2
+#' #print(dif_sal)
+#' #the best combination is 3 3 2
 #'
 #' @export
 

@@ -27,7 +27,8 @@
 #'  conditions.The labels of the variables must be the same for all conditions
 #'  in the data frame.
 #'
-#' @return \code{Resultado} a list which stores the name of the individual and
+#' @return
+#' \code{Resultado} a list which stores the name of the individual and
 #' the variables, the number of iterations, the variability explained by the
 #' model, and the total variability.
 #' \code{Proyeccion} It is a list which holds the projection of individuals and
